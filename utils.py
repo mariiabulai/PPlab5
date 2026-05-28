@@ -25,8 +25,8 @@ def divide(a: int, b: int) -> float:
 
 def decimal_to_binary(n: int) -> str:
     """Converts a decimal number to binary string."""
-    if not isinstance(n, int) or n < 0:
-        raise ValueError("Liczba musi być naturalna")
-    if n > 100:
+    if n < 0 or n > 100:
         raise ValueError("Liczba musi być z zakresu od 0 do 100")
+    if not isinstance(n, int):
+        raise ValueError("Liczba musi być naturalna")
     return bin(n)[2:]
