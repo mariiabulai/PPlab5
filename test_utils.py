@@ -34,3 +34,26 @@ def test_divide(a, b, expected):
     """Test the divide function"""
     result = utils.divide(a, b)
     assert result == expected
+
+
+@pytest.mark.parametrize(
+    "n, expected", [(0, "0"), (5, "101"), (10, "1010"), (100, "1100100")]
+)
+def test_decimal_to_binary_correct(n, expected):
+    """Test the decimal_to_binary function"""
+    result = utils.decimal_to_binary(n)
+    assert result == expected
+
+
+@pytest.mark.parametrize("n", [-1, 101])
+def test_decimal_to_binary_out_of_range(n):
+    """Test the range of the function"""
+    with pytest.raises(ValueError, match="Liczba musi być z zakresu od 0 do 100"):
+        utils.decimal_to_binary(n)
+
+
+@pytest.mark.parametrize("n", [2.5, 3.14])
+def test_decimal_to_binary_not_natural(n):
+    """Test if the number is natural"""
+    with pytest.raises(ValueError, match="Liczba musi być naturalna"):
+        utils.decimal_to_binary(n)
